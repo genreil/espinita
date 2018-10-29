@@ -128,11 +128,11 @@ module Espinita
 
     # audited attributes detected against permitted columns
     def audited_attributes
-      self.changes.keys & self.class.permitted_columns
+      self.changes_to_save.keys & self.class.permitted_columns
     end
 
     def audited_hash
-      Hash[ audited_attributes.map{|o| [o.to_sym, self.changes[o.to_sym] ] } ]
+      Hash[ audited_attributes.map{|o| [o.to_sym, self.changes_to_save[o.to_sym] ] } ]
     end
 
 
